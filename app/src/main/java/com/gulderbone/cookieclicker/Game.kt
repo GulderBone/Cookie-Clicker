@@ -1,19 +1,18 @@
 package com.gulderbone.cookieclicker
 
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 
-class Game(activity: AppCompatActivity) : AppCompatActivity() {
-
-    private val cookie: ImageView = activity.findViewById(R.id.cookie)
-    private val scoreCounter: TextView = activity.findViewById(R.id.scoreCounter)
-
+class Game {
     companion object {
         var score = 0
-    }
 
-    init {
-        cookie.setOnClickListener { Cookie.cookieClicked(scoreCounter) }
+        fun switchToFullScreen(activity: AppCompatActivity) {
+            activity.supportActionBar?.hide()
+            activity.window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
     }
 }
