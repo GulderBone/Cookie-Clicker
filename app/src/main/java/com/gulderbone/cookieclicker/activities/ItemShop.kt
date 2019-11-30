@@ -1,7 +1,9 @@
-package com.gulderbone.cookieclicker
+package com.gulderbone.cookieclicker.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gulderbone.cookieclicker.Game
+import com.gulderbone.cookieclicker.R
 
 class ItemShop : AppCompatActivity() {
 
