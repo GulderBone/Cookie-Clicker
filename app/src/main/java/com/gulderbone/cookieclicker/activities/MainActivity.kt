@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
         shopButton = findViewById(R.id.openItemShopButton)
+        Game.startCountingCookies(scoreCounter)
     }
 
     private fun openShop() {
