@@ -1,7 +1,3 @@
 package com.gulderbone.cookieclicker.cookieproducers
 
-class Grandma : CookieProducer {
-    override val name = "Grandma"
-    override val cpm = 5
-    override val startingPrice = 50
-}
+class Grandma : CookieProducer("Grandma", 5, 50)
