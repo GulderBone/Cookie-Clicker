@@ -1,9 +1,6 @@
 package com.gulderbone.cookieclicker.cookieproducers
 
-interface CookieProducer {
-    val name: String
-    val cpm: Int
-    val startingPrice: Int
+abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice: Int) {
 
     fun calculatePrice(amount: Int): Int {
         var price = startingPrice
@@ -14,5 +11,26 @@ interface CookieProducer {
 
         return price
     }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + cpm
+        result = 31 * result + startingPrice
+        return result
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as CookieProducer
+
+        if (name != other.name) return false
+        if (cpm != other.cpm) return false
+        if (startingPrice != other.startingPrice) return false
+
+        return true
+    }
+
 
 }
