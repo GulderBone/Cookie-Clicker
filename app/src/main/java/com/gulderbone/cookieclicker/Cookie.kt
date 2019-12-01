@@ -7,8 +7,7 @@ class Cookie {
     companion object {
         fun cookieClicked(scoreCounter: TextView) {
             Game.score++
-            scoreCounter.text = Game.score.toString()
+            scoreCounter.text = Game.score.toInt().toString()
         }
     }
-
 }
