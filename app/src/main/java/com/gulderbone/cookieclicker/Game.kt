@@ -1,5 +1,6 @@
 package com.gulderbone.cookieclicker
 
+import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
@@ -10,7 +11,7 @@ import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
 object Game {
     var score = 0.0
     var cpm = 0.0
-    var producers = mutableMapOf<CookieProducer, Int>()
+    private var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies(counter: TextView) {
         val mainHandler = Handler(Looper.getMainLooper())
@@ -22,6 +23,23 @@ object Game {
                 mainHandler.postDelayed(this, 50)
             }
         })
+    }
+
+    fun scoreSaving(preferences: SharedPreferences) {
+        val mainHandler = Handler(Looper.getMainLooper())
+        val editor = preferences.edit()
+
+        mainHandler.post(object : Runnable {
+            override fun run() {
+                editor.putInt("Score", score.toInt())
+                editor.apply()
+                mainHandler.postDelayed(this, 1000)
+            }
+        })
+    }
+
+    fun retrieveScore(preferences: SharedPreferences) {
+        score = preferences.getInt("Score", score.toInt()).toDouble()
     }
 
     fun switchToFullScreen(activity: AppCompatActivity) {

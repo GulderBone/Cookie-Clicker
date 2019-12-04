@@ -1,6 +1,7 @@
 package com.gulderbone.cookieclicker.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cookie: ImageView
     private lateinit var scoreCounter: TextView
     private lateinit var shopButton: Button
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
         shopButton = findViewById(R.id.openItemShopButton)
+        sharedPreferences = getSharedPreferences("prefs", 0)
+        Game.retrieveScore(sharedPreferences)
+        Game.scoreSaving(sharedPreferences)
         Game.startCountingCookies(scoreCounter)
     }
 
