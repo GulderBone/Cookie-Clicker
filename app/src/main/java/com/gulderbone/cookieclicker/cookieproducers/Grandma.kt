@@ -1,3 +1,3 @@
 package com.gulderbone.cookieclicker.cookieproducers
 
-class Grandma : CookieProducer("Grandma", 5, 50)
+class Grandma : CookieProducer("Grandma", 1, 100)
