@@ -17,7 +17,7 @@ class ItemShop : AppCompatActivity() {
 
         upgradeButton = findViewById(R.id.upgrade)
 
-        upgradeButton.setOnClickListener { Game.producerPurchased(Grandma()) }
+        upgradeButton.setOnClickListener { Game.producerPurchased(Grandma(), this) }
 
     }
 }

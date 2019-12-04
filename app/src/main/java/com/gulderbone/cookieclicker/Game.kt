@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
 
@@ -32,10 +33,15 @@ object Game {
         )
     }
 
-    fun producerPurchased(cookieProducer: CookieProducer) {
-        addProducer(cookieProducer)
-        recalculateCpm()
-        println("Producer ${cookieProducer.name} purchased, current cpm: $cpm")
+    fun producerPurchased(cookieProducer: CookieProducer, activity: AppCompatActivity) {
+        if (deductCookiesFromScore(cookieProducer)) {
+            addProducer(cookieProducer)
+            recalculateCpm()
+            println("Current cpm: $cpm")
+        } else {
+            val toast = Toast.makeText(activity, "Not enough cookies", Toast.LENGTH_SHORT)
+            toast.show()
+        }
     }
 
     private fun addProducer(cookieProducer: CookieProducer) {
@@ -51,5 +57,17 @@ object Game {
         producers.forEach { producer ->
             cpm += producer.key.cpm * producer.value
         }
+    }
+
+    private fun deductCookiesFromScore(cookieProducer: CookieProducer): Boolean {
+        val amount = if (producers.containsKey(cookieProducer)) producers[cookieProducer] else 0
+        val currentProducerPrice = cookieProducer.calculatePrice(amount!!)
+        if (score < currentProducerPrice) {
+            return false
+        } else {
+            score -= currentProducerPrice
+            println("$currentProducerPrice cookies spent")
+        }
+        return true
     }
 }
