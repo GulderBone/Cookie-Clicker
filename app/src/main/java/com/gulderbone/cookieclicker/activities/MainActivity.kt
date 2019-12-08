@@ -1,40 +1,20 @@
 package com.gulderbone.cookieclicker.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.gulderbone.cookieclicker.Cookie
-import com.gulderbone.cookieclicker.Game
-import com.gulderbone.cookieclicker.R
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var cookie: ImageView
-    private lateinit var scoreCounter: TextView
-    private lateinit var shopButton: Button
-
+abstract class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Game.switchToFullScreen(this)
-        setContentView(R.layout.activity_main)
-
-        startNewGame()
-        cookie.setOnClickListener { Cookie.cookieClicked(scoreCounter) }
-        shopButton.setOnClickListener { openShop() }
+        switchToFullScreen()
     }
 
-    private fun startNewGame() {
-        cookie = findViewById(R.id.cookie)
-        scoreCounter = findViewById(R.id.scoreCounter)
-        shopButton = findViewById(R.id.openItemShopButton)
-        Game.startCountingCookies(scoreCounter)
-    }
-
-    private fun openShop() {
-        val intent = Intent(applicationContext, ItemShop::class.java)
-        startActivity(intent)
+    private fun switchToFullScreen() {
+        supportActionBar?.hide()
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 }
