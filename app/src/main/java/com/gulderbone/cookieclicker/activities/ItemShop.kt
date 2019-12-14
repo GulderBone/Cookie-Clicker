@@ -2,6 +2,7 @@ package com.gulderbone.cookieclicker.activities
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
@@ -10,10 +11,15 @@ import com.gulderbone.cookieclicker.cookieproducers.Grandma
 
 class ItemShop : MainActivity() {
 
+    private lateinit var scoreCounter: TextView
     private lateinit var grandmaButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_shop)
+
+        scoreCounter = findViewById(R.id.scoreCounter)
+        Game.stareUpdatingScoreCounter(scoreCounter)
 
         grandmaButton = findViewById(R.id.grandma)
         grandmaButton.setOnClickListener {
