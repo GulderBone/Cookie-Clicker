@@ -27,7 +27,8 @@ class StartActivity : MainActivity() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
         shopButton = findViewById(R.id.openItemShopButton)
-        Game.startCountingCookies(scoreCounter)
+        Game.startCountingCookies()
+        Game.stareUpdatingScoreCounter(scoreCounter)
     }
 
     private fun cookieClicked() {
