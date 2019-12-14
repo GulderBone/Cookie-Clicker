@@ -1,12 +1,18 @@
 package com.gulderbone.cookieclicker.cookieproducers
 
+import com.gulderbone.cookieclicker.Game
+
 abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice: Int) {
 
-    fun calculatePrice(amount: Int): Int {
+    fun calculatePrice(cookieProducer: CookieProducer): Int {
         var price = startingPrice
+        val amount: Int? =
+            if (Game.producers.containsKey(cookieProducer)) Game.producers[cookieProducer] else 0
 
-        for (i in 0 until amount) {
-            price = (price * 1.10).toInt()
+        if (amount != null) {
+            for (i in 0 until amount) {
+                price = (price * 1.10).toInt()
+            }
         }
 
         return price
@@ -31,6 +37,4 @@ abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice:
 
         return true
     }
-
-
 }
