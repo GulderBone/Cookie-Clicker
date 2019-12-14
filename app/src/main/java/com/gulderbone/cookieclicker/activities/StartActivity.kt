@@ -2,6 +2,8 @@ package com.gulderbone.cookieclicker.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,8 +29,10 @@ class StartActivity : MainActivity() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
         shopButton = findViewById(R.id.openItemShopButton)
+        retrieveScore()
         Game.startCountingCookies()
         Game.stareUpdatingScoreCounter(scoreCounter)
+        startSavingScore()
     }
 
     private fun cookieClicked() {
@@ -36,8 +40,27 @@ class StartActivity : MainActivity() {
         scoreCounter.text = Game.score.toInt().toString()
     }
 
+
     private fun openShop() {
         val intent = Intent(applicationContext, ItemShop::class.java)
         startActivity(intent)
+    }
+
+    private fun startSavingScore() {
+        val mainHandler = Handler(Looper.getMainLooper())
+        val sharedPreferencesEditor = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0).edit()
+
+        mainHandler.post(object : Runnable {
+            override fun run() {
+                sharedPreferencesEditor.putInt("score", Game.score.toInt())
+                sharedPreferencesEditor.apply()
+                mainHandler.postDelayed(this, 50)
+            }
+        })
+    }
+
+    private fun retrieveScore() {
+        val sharedPreferences = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0)
+        Game.score = sharedPreferences.getInt("score", 0).toDouble()
     }
 }
