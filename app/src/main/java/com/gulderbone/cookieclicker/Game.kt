@@ -2,7 +2,6 @@ package com.gulderbone.cookieclicker
 
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +10,7 @@ import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
 object Game {
     var score = 0.0
     var cpm = 0.0
-    var producers = mutableMapOf<CookieProducer, Int>()
+    var producers = mutableMapOf<CookieProducer, Int>() //TODO serialize
 
     fun startCountingCookies(counter: TextView) {
         val mainHandler = Handler(Looper.getMainLooper())
@@ -23,14 +22,6 @@ object Game {
                 mainHandler.postDelayed(this, 50)
             }
         })
-    }
-
-    fun switchToFullScreen(activity: AppCompatActivity) {
-        activity.supportActionBar?.hide()
-        activity.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
     }
 
     fun producerPurchased(cookieProducer: CookieProducer, activity: AppCompatActivity) {
