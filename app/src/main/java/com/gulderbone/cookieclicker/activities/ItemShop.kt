@@ -8,8 +8,8 @@ import android.widget.Toast
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
-import com.gulderbone.cookieclicker.utilities.FileHelper
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromResources
+import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.saveTextToFile
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -28,21 +28,18 @@ class ItemShop : MainActivity() {
         scoreCounter = findViewById(R.id.scoreCounter)
         Game.stareUpdatingScoreCounter(scoreCounter)
 
-        cookieProducers =
-            parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
+        cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
         grandmaButton = findViewById(R.id.grandma)
-        grandmaButton.setOnClickListener {
-            val grandma = cookieProducers["Grandma"] ?: CookieProducer("Not found", 0, 0)
-
-            handlePurchase(grandma)
-        }
+        grandmaButton.setOnClickListener { handlePurchase("Grandma") }
     }
 
-    private fun handlePurchase(cookieProducer: CookieProducer) {
-        if (enoughCookiesToBuy(cookieProducer)) {
-            deductCookiesFromScore(cookieProducer)
-            addProducer(cookieProducer)
+    private fun handlePurchase(producerName: String) {
+        val grandma = cookieProducers[producerName] ?: CookieProducer("Not found", 0, 0)
+
+        if (enoughCookiesToBuy(grandma)) {
+            deductCookiesFromScore(grandma)
+            addProducer(grandma)
             Game.recalculateCpm()
             Log.i("cpm", "${Game.cpm}")
             saveOwnedProducers()
@@ -99,6 +96,6 @@ class ItemShop : MainActivity() {
         val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
 
         val json = jsonAdapter.toJson(ownedProducers)
-        FileHelper.saveTextToFile(application, "producersOwned.json", json)
+        saveTextToFile(application, "producersOwned.json", json)
     }
 }
