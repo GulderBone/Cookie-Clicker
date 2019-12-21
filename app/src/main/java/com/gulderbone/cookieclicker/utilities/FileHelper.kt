@@ -2,7 +2,6 @@ package com.gulderbone.cookieclicker.utilities
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import java.io.File
 
 class FileHelper {
@@ -18,7 +17,6 @@ class FileHelper {
         fun saveTextToFile(app: Application, fileName: String, json: String?) {
             val file = File(app.filesDir, fileName)
             file.writeText(json ?: "", Charsets.UTF_8)
-            Log.i("test", File(app.filesDir, fileName).readText())
         }
 
         fun getTextFromFile(app: Application, fileName: String): String? {

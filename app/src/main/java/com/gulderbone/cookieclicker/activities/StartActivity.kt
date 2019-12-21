@@ -63,7 +63,7 @@ class StartActivity : MainActivity() {
             override fun run() {
                 sharedPreferencesEditor.putInt("score", Game.score.toInt())
                 sharedPreferencesEditor.apply()
-                mainHandler.postDelayed(this, 50)
+                mainHandler.postDelayed(this, 25)
             }
         })
     }
@@ -84,7 +84,7 @@ class StartActivity : MainActivity() {
             CookieProducer::class.java
         )
         val adapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-        val producers = adapter.fromJson(json) ?: emptyMap()
-        Game.producers = producers.map { it.value to it.key.toInt() }.toMap().toMutableMap()
+        val producers = if (json != null) adapter.fromJson(json) else emptyMap()
+        Game.producers = producers!!.map { it.value to it.key.toInt() }.toMap().toMutableMap()
     }
 }
