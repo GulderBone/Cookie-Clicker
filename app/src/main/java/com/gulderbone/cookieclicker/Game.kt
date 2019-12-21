@@ -3,7 +3,7 @@ package com.gulderbone.cookieclicker
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
-import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
+import com.gulderbone.cookieclicker.data.CookieProducer
 
 object Game {
     var score = 0.0
