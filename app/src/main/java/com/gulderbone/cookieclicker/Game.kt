@@ -8,7 +8,7 @@ import com.gulderbone.cookieclicker.data.CookieProducer
 object Game {
     var score = 0.0
     var cpm = 0.0
-    var producers = mutableMapOf<CookieProducer, Int>() //TODO serialize
+    var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies() {
         val mainHandler = Handler(Looper.getMainLooper())
