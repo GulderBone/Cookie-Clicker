@@ -17,6 +17,10 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class ItemShop : MainActivity() {
 
+    val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
     private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
     private lateinit var grandmaButton: Button
@@ -75,12 +79,9 @@ class ItemShop : MainActivity() {
             List::class.java, CookieProducer::class.java
         )
 
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-        val adapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
+        val jsonAdapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
 
-        return adapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
+        return jsonAdapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
     }
 
     private fun saveOwnedProducers() {
@@ -90,9 +91,6 @@ class ItemShop : MainActivity() {
             Map::class.java, String()::class.java, CookieProducer::class.java
         )
 
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
         val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
 
         val json = jsonAdapter.toJson(ownedProducers)
