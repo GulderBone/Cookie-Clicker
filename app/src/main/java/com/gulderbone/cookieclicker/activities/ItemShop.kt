@@ -28,21 +28,26 @@ class ItemShop : MainActivity() {
         scoreCounter = findViewById(R.id.scoreCounter)
         Game.stareUpdatingScoreCounter(scoreCounter)
 
-        cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
+        cookieProducers =
+            parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
         grandmaButton = findViewById(R.id.grandma)
         grandmaButton.setOnClickListener {
             val grandma = cookieProducers["Grandma"] ?: CookieProducer("Not found", 0, 0)
 
-            if (enoughCookiesToBuy(grandma)) {
-                deductCookiesFromScore(grandma)
-                addProducer(grandma)
-                Game.recalculateCpm()
-                Log.i("cpm", "${Game.cpm}")
-                saveOwnedProducers()
-            } else {
-                Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
-            }
+            handlePurchase(grandma)
+        }
+    }
+
+    private fun handlePurchase(cookieProducer: CookieProducer) {
+        if (enoughCookiesToBuy(cookieProducer)) {
+            deductCookiesFromScore(cookieProducer)
+            addProducer(cookieProducer)
+            Game.recalculateCpm()
+            Log.i("cpm", "${Game.cpm}")
+            saveOwnedProducers()
+        } else {
+            Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
         }
     }
 
