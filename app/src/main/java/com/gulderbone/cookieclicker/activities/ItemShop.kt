@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
+import com.gulderbone.cookieclicker.utilities.FileHelper
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromResources
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -36,8 +37,9 @@ class ItemShop : MainActivity() {
             if (enoughCookiesToBuy(grandma)) {
                 deductCookiesFromScore(grandma)
                 addProducer(grandma)
-                recalculateCpm()
+                Game.recalculateCpm()
                 Log.i("cpm", "${Game.cpm}")
+                saveOwnedProducers()
             } else {
                 Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
             }
@@ -49,13 +51,6 @@ class ItemShop : MainActivity() {
             Game.producers[cookieProducer] = Game.producers[cookieProducer]!!.plus(1)
         } else {
             Game.producers[cookieProducer] = 1
-        }
-    }
-
-    private fun recalculateCpm() {
-        Game.cpm = 0.0
-        Game.producers.forEach { producer ->
-            Game.cpm += producer.key.cpm * producer.value
         }
     }
 
@@ -74,15 +69,31 @@ class ItemShop : MainActivity() {
     }
 
     private fun parseCookieProducersToMap(text: String): Map<String, CookieProducer> {
-        val listType = Types.newParameterizedType(
+        val cookieProducerList = Types.newParameterizedType(
             List::class.java, CookieProducer::class.java
         )
 
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-        val adapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(listType)
+        val adapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
 
         return adapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
+    }
+
+    private fun saveOwnedProducers() {
+        val ownedProducers = Game.producers.map { it.value.toString() to it.key }.toMap()
+
+        val cookieProducerMap = Types.newParameterizedType(
+            Map::class.java, String()::class.java, CookieProducer::class.java
+        )
+
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+        val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
+
+        val json = jsonAdapter.toJson(ownedProducers)
+        FileHelper.saveTextToFile(application, "producersOwned.json", json)
     }
 }

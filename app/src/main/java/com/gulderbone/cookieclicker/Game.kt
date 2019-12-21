@@ -31,4 +31,11 @@ object Game {
             }
         })
     }
+
+    fun recalculateCpm() {
+        cpm = 0.0
+        producers.forEach { producer ->
+            cpm += producer.key.cpm * producer.value
+        }
+    }
 }

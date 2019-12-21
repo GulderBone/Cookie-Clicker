@@ -9,6 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
+import com.gulderbone.cookieclicker.data.CookieProducer
+import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromFile
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class StartActivity : MainActivity() {
 
@@ -30,6 +36,8 @@ class StartActivity : MainActivity() {
         scoreCounter = findViewById(R.id.scoreCounter)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
+        retrieveOwnedProducers()
+        Game.recalculateCpm()
         Game.startCountingCookies()
         Game.stareUpdatingScoreCounter(scoreCounter)
         startSavingScore()
@@ -48,7 +56,8 @@ class StartActivity : MainActivity() {
 
     private fun startSavingScore() {
         val mainHandler = Handler(Looper.getMainLooper())
-        val sharedPreferencesEditor = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0).edit()
+        val sharedPreferencesEditor =
+            this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0).edit()
 
         mainHandler.post(object : Runnable {
             override fun run() {
@@ -62,5 +71,20 @@ class StartActivity : MainActivity() {
     private fun retrieveScore() {
         val sharedPreferences = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0)
         Game.score = sharedPreferences.getInt("score", 0).toDouble()
+    }
+
+    private fun retrieveOwnedProducers() {
+        val json = getTextFromFile(application, "producersOwned.json")
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+        val cookieProducerMap = Types.newParameterizedType(
+            Map::class.java,
+            String::class.java,
+            CookieProducer::class.java
+        )
+        val adapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
+        val producers = adapter.fromJson(json) ?: emptyMap()
+        Game.producers = producers.map { it.value to it.key.toInt() }.toMap().toMutableMap()
     }
 }
