@@ -78,7 +78,6 @@ class ItemShop : MainActivity() {
         val cookieProducerList = Types.newParameterizedType(
             List::class.java, CookieProducer::class.java
         )
-
         val jsonAdapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
 
         return jsonAdapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
@@ -86,14 +85,12 @@ class ItemShop : MainActivity() {
 
     private fun saveOwnedProducers() {
         val ownedProducers = Game.producers.map { it.value.toString() to it.key }.toMap()
-
         val cookieProducerMap = Types.newParameterizedType(
             Map::class.java, String()::class.java, CookieProducer::class.java
         )
-
         val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-
         val json = jsonAdapter.toJson(ownedProducers)
+
         saveTextToFile(application, "producersOwned.json", json)
     }
 }
