@@ -17,7 +17,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class ItemShop : MainActivity() {
 
-    val moshi = Moshi.Builder()
+    private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
 
