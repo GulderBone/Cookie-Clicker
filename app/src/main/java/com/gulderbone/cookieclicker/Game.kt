@@ -3,12 +3,12 @@ package com.gulderbone.cookieclicker
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
-import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
+import com.gulderbone.cookieclicker.data.CookieProducer
 
 object Game {
     var score = 0.0
     var cpm = 0.0
-    var producers = mutableMapOf<CookieProducer, Int>() //TODO serialize
+    var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies() {
         val mainHandler = Handler(Looper.getMainLooper())
@@ -30,5 +30,12 @@ object Game {
                 mainHandler.postDelayed(this, 50)
             }
         })
+    }
+
+    fun recalculateCpm() {
+        cpm = 0.0
+        producers.forEach { producer ->
+            cpm += producer.key.cpm * producer.value
+        }
     }
 }

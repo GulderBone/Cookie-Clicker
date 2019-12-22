@@ -1,9 +1,12 @@
-package com.gulderbone.cookieclicker.cookieproducers
+package com.gulderbone.cookieclicker.data
 
 import com.gulderbone.cookieclicker.Game
 
-abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice: Int) {
-
+data class CookieProducer (
+    val name: String,
+    val startingPrice: Int,
+    val cpm: Int
+) {
     fun calculatePrice(cookieProducer: CookieProducer): Int {
         var price = startingPrice
         val amount: Int? =
@@ -18,13 +21,6 @@ abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice:
         return price
     }
 
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + cpm
-        result = 31 * result + startingPrice
-        return result
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -32,9 +28,16 @@ abstract class CookieProducer(val name: String, val cpm: Int, val startingPrice:
         other as CookieProducer
 
         if (name != other.name) return false
-        if (cpm != other.cpm) return false
         if (startingPrice != other.startingPrice) return false
+        if (cpm != other.cpm) return false
 
         return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + startingPrice
+        result = 31 * result + cpm
+        return result
     }
 }

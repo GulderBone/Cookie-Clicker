@@ -1,16 +1,27 @@
 package com.gulderbone.cookieclicker.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
-import com.gulderbone.cookieclicker.cookieproducers.CookieProducer
-import com.gulderbone.cookieclicker.cookieproducers.Grandma
+import com.gulderbone.cookieclicker.data.CookieProducer
+import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromResources
+import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.saveTextToFile
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class ItemShop : MainActivity() {
 
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+    private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
     private lateinit var grandmaButton: Button
 
@@ -21,16 +32,23 @@ class ItemShop : MainActivity() {
         scoreCounter = findViewById(R.id.scoreCounter)
         Game.stareUpdatingScoreCounter(scoreCounter)
 
+        cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
+
         grandmaButton = findViewById(R.id.grandma)
-        grandmaButton.setOnClickListener {
-            if (enoughCookiesToBuy(Grandma())) {
-                deductCookiesFromScore(Grandma())
-                addProducer(Grandma())
-                recalculateCpm()
-                println("Current cpm: ${Game.cpm}")
-            } else {
-                Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
-            }
+        grandmaButton.setOnClickListener { handlePurchase("Grandma") }
+    }
+
+    private fun handlePurchase(producerName: String) {
+        val grandma = cookieProducers[producerName] ?: CookieProducer("Not found", 0, 0)
+
+        if (enoughCookiesToBuy(grandma)) {
+            deductCookiesFromScore(grandma)
+            addProducer(grandma)
+            Game.recalculateCpm()
+            Log.i("cpm", "${Game.cpm}")
+            saveOwnedProducers()
+        } else {
+            Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -42,24 +60,37 @@ class ItemShop : MainActivity() {
         }
     }
 
-    private fun recalculateCpm() {
-        Game.cpm = 0.0
-        Game.producers.forEach { producer ->
-            Game.cpm += producer.key.cpm * producer.value
-        }
-    }
-
     private fun enoughCookiesToBuy(cookieProducer: CookieProducer): Boolean {
-        val currentProducerPrice = cookieProducer.calculatePrice(Grandma())
+        val currentProducerPrice = cookieProducer.calculatePrice(cookieProducer)
         if (Game.score < currentProducerPrice) {
             return false
         } else {
-            println("$currentProducerPrice cookies spent")
+            Log.i("expenses", "$currentProducerPrice cookies spent")
         }
         return true
     }
 
     private fun deductCookiesFromScore(cookieProducer: CookieProducer) {
-        Game.score -= cookieProducer.calculatePrice(Grandma())
+        Game.score -= cookieProducer.calculatePrice(cookieProducer)
+    }
+
+    private fun parseCookieProducersToMap(text: String): Map<String, CookieProducer> {
+        val cookieProducerList = Types.newParameterizedType(
+            List::class.java, CookieProducer::class.java
+        )
+        val jsonAdapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
+
+        return jsonAdapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
+    }
+
+    private fun saveOwnedProducers() {
+        val ownedProducers = Game.producers.map { it.value.toString() to it.key }.toMap()
+        val cookieProducerMap = Types.newParameterizedType(
+            Map::class.java, String()::class.java, CookieProducer::class.java
+        )
+        val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
+        val json = jsonAdapter.toJson(ownedProducers)
+
+        saveTextToFile(application, "producersOwned.json", json)
     }
 }
