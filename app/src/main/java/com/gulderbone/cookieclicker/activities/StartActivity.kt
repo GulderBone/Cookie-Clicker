@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,6 +16,9 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlin.math.abs
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class StartActivity : MainActivity() {
 
@@ -27,8 +31,33 @@ class StartActivity : MainActivity() {
         setContentView(R.layout.activity_main)
         startNewGame()
 
-        cookie.setOnClickListener { cookieClicked() }
         shopButton.setOnClickListener { openShop() }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (ev != null) {
+            if (ev.action == MotionEvent.ACTION_DOWN) {
+                if (cookieAreaClicked(ev.x, ev.y)) {
+                    cookieClicked()
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(ev)
+    }
+
+    private fun cookieAreaClicked(x: Float, y: Float): Boolean {
+        val horizontalCookieCenter = (cookie.left + cookie.right) / 2
+        val verticalCookieCenter = (cookie.top + cookie.bottom) / 2
+        val radius = abs(cookie.left - cookie.right) / 2
+        val distance = sqrt((x - horizontalCookieCenter).pow(2) + (y - verticalCookieCenter).pow(2))
+
+        return distance <= radius
+    }
+
+    private fun cookieClicked() {
+        Game.score++
+        scoreCounter.text = Game.score.toInt().toString()
     }
 
     private fun startNewGame() {
@@ -41,11 +70,6 @@ class StartActivity : MainActivity() {
         Game.startCountingCookies()
         Game.stareUpdatingScoreCounter(scoreCounter)
         startSavingScore()
-    }
-
-    private fun cookieClicked() {
-        Game.score++
-        scoreCounter.text = Game.score.toInt().toString()
     }
 
 
