@@ -42,7 +42,6 @@ class StartActivity : MainActivity() {
                 }
             }
         }
-
         return super.dispatchTouchEvent(ev)
     }
 
