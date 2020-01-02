@@ -7,7 +7,7 @@ import com.gulderbone.cookieclicker.data.CookieProducer
 
 object Game {
     var score = 0.0
-    var cpm = 0.0
+    var cps = 0.0
     var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies() {
@@ -15,7 +15,7 @@ object Game {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                score += (cpm / 20)
+                score += (cps / 20)
                 mainHandler.postDelayed(this, 50)
             }
         })
@@ -32,10 +32,10 @@ object Game {
         })
     }
 
-    fun recalculateCpm() {
-        cpm = 0.0
+    fun recalculateCps() {
+        cps = 0.0
         producers.forEach { producer ->
-            cpm += producer.key.cpm * producer.value
+            cps += producer.key.cps * producer.value
         }
     }
 }

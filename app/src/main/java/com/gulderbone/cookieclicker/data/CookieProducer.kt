@@ -5,7 +5,7 @@ import com.gulderbone.cookieclicker.Game
 data class CookieProducer (
     val name: String,
     val startingPrice: Int,
-    val cpm: Int
+    val cps: Int
 ) {
     fun calculatePrice(cookieProducer: CookieProducer): Int {
         var price = startingPrice
@@ -29,7 +29,7 @@ data class CookieProducer (
 
         if (name != other.name) return false
         if (startingPrice != other.startingPrice) return false
-        if (cpm != other.cpm) return false
+        if (cps != other.cps) return false
 
         return true
     }
@@ -37,7 +37,7 @@ data class CookieProducer (
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + startingPrice
-        result = 31 * result + cpm
+        result = 31 * result + cps
         return result
     }
 }
