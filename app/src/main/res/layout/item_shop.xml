@@ -18,11 +18,184 @@
 
     <Button
         android:id="@+id/grandma"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Grandma"
+        app:layout_constraintBottom_toTopOf="@+id/mine"
+        app:layout_constraintEnd_toStartOf="@+id/farm"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
+
+    <Button
+        android:id="@+id/farm"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Farm"
+        app:layout_constraintBottom_toTopOf="@+id/factory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/grandma"
+        app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
+
+    <Button
+        android:id="@+id/mine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Mine"
+        app:layout_constraintBottom_toTopOf="@+id/bank"
+        app:layout_constraintEnd_toStartOf="@+id/factory"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grandma" />
+
+    <Button
+        android:id="@+id/factory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Factory"
+        app:layout_constraintBottom_toTopOf="@+id/temple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mine"
+        app:layout_constraintTop_toBottomOf="@+id/farm" />
+
+    <Button
+        android:id="@+id/bank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Bank"
+        app:layout_constraintBottom_toTopOf="@+id/wizardTower"
+        app:layout_constraintEnd_toStartOf="@+id/temple"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mine" />
+
+    <Button
+        android:id="@+id/temple"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Temple"
+        app:layout_constraintBottom_toTopOf="@+id/shipment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bank"
+        app:layout_constraintTop_toBottomOf="@+id/factory" />
+
+    <Button
+        android:id="@+id/wizardTower"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Wizard Tower"
+        app:layout_constraintBottom_toTopOf="@+id/alchemyLab"
+        app:layout_constraintEnd_toStartOf="@+id/shipment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bank" />
+
+    <Button
+        android:id="@+id/shipment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Shipment"
+        app:layout_constraintBottom_toTopOf="@+id/portal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wizardTower"
+        app:layout_constraintTop_toBottomOf="@+id/temple" />
+
+    <Button
+        android:id="@+id/alchemyLab"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Alchemy Lab"
+        app:layout_constraintBottom_toTopOf="@+id/timeMachine"
+        app:layout_constraintEnd_toStartOf="@+id/portal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wizardTower" />
+
+    <Button
+        android:id="@+id/portal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Portal"
+        app:layout_constraintBottom_toTopOf="@+id/antimatterCondenser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/alchemyLab"
+        app:layout_constraintTop_toBottomOf="@+id/shipment" />
+
+    <Button
+        android:id="@+id/timeMachine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Time Machine"
+        app:layout_constraintBottom_toTopOf="@+id/prism"
+        app:layout_constraintEnd_toStartOf="@+id/antimatterCondenser"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alchemyLab" />
+
+    <Button
+        android:id="@+id/antimatterCondenser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Antimatter Condenser"
+        app:layout_constraintBottom_toTopOf="@+id/chancemaker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/timeMachine"
+        app:layout_constraintTop_toBottomOf="@+id/portal" />
+
+    <Button
+        android:id="@+id/prism"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Prism"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chancemaker"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeMachine" />
+
+    <Button
+        android:id="@+id/chancemaker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Chancemaker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/prism"
+        app:layout_constraintTop_toBottomOf="@+id/antimatterCondenser" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

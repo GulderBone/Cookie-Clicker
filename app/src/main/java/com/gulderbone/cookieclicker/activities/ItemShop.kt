@@ -23,7 +23,21 @@ class ItemShop : MainActivity() {
 
     private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
+
     private lateinit var grandmaButton: Button
+    private lateinit var farmButton: Button
+    private lateinit var mineButton: Button
+    private lateinit var factoryButton: Button
+    private lateinit var bankButton: Button
+    private lateinit var templeButton: Button
+    private lateinit var wizardTowerButton: Button
+    private lateinit var shipmentButton: Button
+    private lateinit var alchemyLabButton: Button
+    private lateinit var portalButton: Button
+    private lateinit var timeMachineButton: Button
+    private lateinit var antimatterCondenserButton: Button
+    private lateinit var prismButton: Button
+    private lateinit var chancemakerButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +48,47 @@ class ItemShop : MainActivity() {
 
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
-        grandmaButton = findViewById(R.id.grandma)
-        grandmaButton.setOnClickListener { handlePurchase("Grandma") }
+        this.grandmaButton = findViewById(R.id.grandma)
+        this.grandmaButton.setOnClickListener { handlePurchase("Grandma") }
+
+        this.farmButton = findViewById(R.id.farm)
+        this.farmButton.setOnClickListener { handlePurchase("Farm") }
+
+        this.mineButton = findViewById(R.id.mine)
+        this.mineButton.setOnClickListener { handlePurchase("Mine") }
+
+        this.factoryButton = findViewById(R.id.factory)
+        this.factoryButton.setOnClickListener { handlePurchase("Factory") }
+
+        this.bankButton = findViewById(R.id.bank)
+        this.bankButton.setOnClickListener { handlePurchase("Bank") }
+
+        this.templeButton = findViewById(R.id.temple)
+        this.templeButton.setOnClickListener { handlePurchase("Temple") }
+
+        this.wizardTowerButton = findViewById(R.id.wizardTower)
+        this.wizardTowerButton.setOnClickListener { handlePurchase("Wizard Tower") }
+
+        this.shipmentButton = findViewById(R.id.shipment)
+        this.shipmentButton.setOnClickListener { handlePurchase("Shipment") }
+
+        this.alchemyLabButton = findViewById(R.id.alchemyLab)
+        this.alchemyLabButton.setOnClickListener { handlePurchase("Alchemy Lab") }
+
+        this.portalButton = findViewById(R.id.portal)
+        this.portalButton.setOnClickListener { handlePurchase("Portal") }
+
+        this.timeMachineButton = findViewById(R.id.timeMachine)
+        this.timeMachineButton.setOnClickListener { handlePurchase("Time Machine") }
+
+        this.antimatterCondenserButton = findViewById(R.id.antimatterCondenser)
+        this.antimatterCondenserButton.setOnClickListener { handlePurchase("Antimatter Condenser") }
+
+        this.prismButton = findViewById(R.id.prism)
+        this.prismButton.setOnClickListener { handlePurchase("Prism") }
+
+        this.chancemakerButton = findViewById(R.id.chancemaker)
+        this.chancemakerButton.setOnClickListener { handlePurchase("Chancemaker") }
     }
 
     private fun handlePurchase(producerName: String) {
@@ -44,8 +97,8 @@ class ItemShop : MainActivity() {
         if (enoughCookiesToBuy(grandma)) {
             deductCookiesFromScore(grandma)
             addProducer(grandma)
-            Game.recalculateCpm()
-            Log.i("cpm", "${Game.cpm}")
+            Game.recalculateCps()
+            Log.i("cps", "${Game.cps}")
             saveOwnedProducers()
         } else {
             Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
