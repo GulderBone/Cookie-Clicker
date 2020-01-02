@@ -65,7 +65,7 @@ class StartActivity : MainActivity() {
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
-        Game.recalculateCpm()
+        Game.recalculateCps()
         Game.startCountingCookies()
         Game.stareUpdatingScoreCounter(scoreCounter)
         startSavingScore()
