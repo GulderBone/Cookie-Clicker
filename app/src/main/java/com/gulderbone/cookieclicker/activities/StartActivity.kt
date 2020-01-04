@@ -13,6 +13,7 @@ import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromFile
 import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -24,6 +25,7 @@ class StartActivity : MainActivity() {
 
     private lateinit var cookie: ImageView
     private lateinit var scoreCounter: TextView
+    private lateinit var cpm: TextView
     private lateinit var shopButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,11 @@ class StartActivity : MainActivity() {
         startNewGame()
 
         shopButton.setOnClickListener { openShop() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Game.updateCpmCounter(cpm)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -62,12 +69,13 @@ class StartActivity : MainActivity() {
     private fun startNewGame() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
+        cpm = findViewById(R.id.cpm)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
         Game.recalculateCpm()
         Game.startCountingCookies()
-        Game.stareUpdatingScoreCounter(scoreCounter)
+        Game.startUpdatingScoreCounter(scoreCounter)
         startSavingScore()
     }
 
@@ -107,7 +115,12 @@ class StartActivity : MainActivity() {
             CookieProducer::class.java
         )
         val adapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-        val producers = if (json != null) adapter.fromJson(json) else emptyMap()
+        val producers = try {
+            if (json != null) adapter.fromJson(json) else emptyMap()
+        } catch (e: JsonDataException) {
+            emptyMap<String, CookieProducer>()
+        }
+
         Game.producers = producers!!.map { it.value to it.key.toInt() }.toMap().toMutableMap()
     }
 }

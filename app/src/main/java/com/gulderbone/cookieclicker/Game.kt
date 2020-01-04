@@ -21,7 +21,7 @@ object Game {
         })
     }
 
-    fun stareUpdatingScoreCounter(counter: TextView) {
+    fun startUpdatingScoreCounter(counter: TextView) {
         val mainHandler = Handler(Looper.getMainLooper())
 
         mainHandler.post(object : Runnable {
@@ -30,6 +30,11 @@ object Game {
                 mainHandler.postDelayed(this, 50)
             }
         })
+    }
+
+    fun updateCpmCounter(counter: TextView) {
+        recalculateCpm();
+        counter.text = cpm.toString()
     }
 
     fun recalculateCpm() {

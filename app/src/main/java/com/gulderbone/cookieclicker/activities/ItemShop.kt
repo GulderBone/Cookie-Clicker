@@ -30,7 +30,7 @@ class ItemShop : MainActivity() {
         setContentView(R.layout.item_shop)
 
         scoreCounter = findViewById(R.id.scoreCounter)
-        Game.stareUpdatingScoreCounter(scoreCounter)
+        Game.startUpdatingScoreCounter(scoreCounter)
 
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
