@@ -25,7 +25,7 @@ class StartActivity : MainActivity() {
 
     private lateinit var cookie: ImageView
     private lateinit var scoreCounter: TextView
-    private lateinit var cpm: TextView
+    private lateinit var cpmCounter: TextView
     private lateinit var shopButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class StartActivity : MainActivity() {
 
     override fun onResume() {
         super.onResume()
-        Game.updateCpmCounter(cpm)
+        Game.updateCpmCounter(cpmCounter)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -69,7 +69,7 @@ class StartActivity : MainActivity() {
     private fun startNewGame() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
-        cpm = findViewById(R.id.cpm)
+        cpmCounter = findViewById(R.id.cpmCounter)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()

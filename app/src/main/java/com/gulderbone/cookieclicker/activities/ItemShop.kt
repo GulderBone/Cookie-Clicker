@@ -23,6 +23,7 @@ class ItemShop : MainActivity() {
 
     private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
+    private lateinit var cpmCounter: TextView
     private lateinit var grandmaButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class ItemShop : MainActivity() {
         setContentView(R.layout.item_shop)
 
         scoreCounter = findViewById(R.id.scoreCounter)
+        cpmCounter = findViewById(R.id.cpmCounter)
         Game.startUpdatingScoreCounter(scoreCounter)
 
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
@@ -38,13 +40,18 @@ class ItemShop : MainActivity() {
         grandmaButton.setOnClickListener { handlePurchase("Grandma") }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Game.updateCpmCounter(cpmCounter)
+    }
+
     private fun handlePurchase(producerName: String) {
         val grandma = cookieProducers[producerName] ?: CookieProducer("Not found", 0, 0)
 
         if (enoughCookiesToBuy(grandma)) {
             deductCookiesFromScore(grandma)
             addProducer(grandma)
-            Game.recalculateCpm()
+            Game.updateCpmCounter(cpmCounter)
             Log.i("cpm", "${Game.cpm}")
             saveOwnedProducers()
         } else {
