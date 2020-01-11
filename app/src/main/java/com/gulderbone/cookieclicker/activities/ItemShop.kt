@@ -24,7 +24,9 @@ class ItemShop : MainActivity() {
     private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
     private lateinit var cpmCounter: TextView
+
     private lateinit var grandmaButton: Button
+    private lateinit var grandmaCounter: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,8 @@ class ItemShop : MainActivity() {
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
         grandmaButton = findViewById(R.id.grandma)
-        grandmaButton.setOnClickListener { handlePurchase("Grandma") }
+        grandmaCounter = findViewById(R.id.grandmaCounter)
+        setupProducer("Grandma", grandmaCounter)
     }
 
     override fun onResume() {
@@ -45,12 +48,13 @@ class ItemShop : MainActivity() {
         Game.updateCpmCounter(cpmCounter)
     }
 
-    private fun handlePurchase(producerName: String) {
-        val grandma = cookieProducers[producerName] ?: CookieProducer("Not found", 0, 0)
+    private fun handlePurchase(producerName: String, counter: TextView) {
+        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, 0, 0)
 
-        if (enoughCookiesToBuy(grandma)) {
-            deductCookiesFromScore(grandma)
-            addProducer(grandma)
+        if (enoughCookiesToBuy(producer)) {
+            deductCookiesFromScore(producer)
+            addProducer(producer)
+            updateProducerCounter(producerName, counter)
             Game.updateCpmCounter(cpmCounter)
             Log.i("cpm", "${Game.cpm}")
             saveOwnedProducers()
@@ -59,12 +63,22 @@ class ItemShop : MainActivity() {
         }
     }
 
+    private fun setupProducer(producerName: String, counter: TextView) {
+        grandmaButton.setOnClickListener { handlePurchase("Grandma", grandmaCounter) }
+        updateProducerCounter(producerName, counter)
+    }
+
     private fun addProducer(cookieProducer: CookieProducer) {
         if (Game.producers.containsKey(cookieProducer)) {
             Game.producers[cookieProducer] = Game.producers[cookieProducer]!!.plus(1)
         } else {
             Game.producers[cookieProducer] = 1
         }
+    }
+
+    private fun updateProducerCounter(producerName: String, counter: TextView) {
+        val producer = cookieProducers[producerName]  ?: CookieProducer(producerName, 0, 0)
+        counter.text = Game.producers[producer]?.toString() ?: 0.toString()
     }
 
     private fun enoughCookiesToBuy(cookieProducer: CookieProducer): Boolean {
