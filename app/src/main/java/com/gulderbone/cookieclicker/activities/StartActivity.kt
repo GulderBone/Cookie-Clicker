@@ -27,6 +27,7 @@ class StartActivity : MainActivity() {
     private lateinit var scoreCounter: TextView
     private lateinit var cpmCounter: TextView
     private lateinit var shopButton: Button
+    private lateinit var resetButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,15 @@ class StartActivity : MainActivity() {
         startNewGame()
 
         shopButton.setOnClickListener { openShop() }
+
+        // TODO DELETE JUST FOR DEVELOPMENT
+        resetButton = findViewById(R.id.resetButton)
+        resetButton.setOnClickListener{
+            Game.score = 200.0
+            Game.cpm = 0.0
+            Game.producers = mutableMapOf()
+        }
+        // JUST FOR DEVELOPMENT
     }
 
     override fun onResume() {
