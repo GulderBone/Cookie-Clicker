@@ -40,7 +40,7 @@ class ItemShop : MainActivity() {
 
         grandmaButton = findViewById(R.id.grandma)
         grandmaCounter = findViewById(R.id.grandmaCounter)
-        setupProducer("Grandma", grandmaCounter)
+        setupProducer(grandmaButton, "Grandma", grandmaCounter)
     }
 
     override fun onResume() {
@@ -63,8 +63,8 @@ class ItemShop : MainActivity() {
         }
     }
 
-    private fun setupProducer(producerName: String, counter: TextView) {
-        grandmaButton.setOnClickListener { handlePurchase("Grandma", grandmaCounter) }
+    private fun setupProducer(producerButton: Button, producerName: String, counter: TextView) {
+        producerButton.setOnClickListener { handlePurchase(producerName, grandmaCounter) }
         updateProducerCounter(producerName, counter)
     }
 
