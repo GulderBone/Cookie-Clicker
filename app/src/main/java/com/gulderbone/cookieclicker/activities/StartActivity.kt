@@ -13,6 +13,7 @@ import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromFile
 import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -24,7 +25,9 @@ class StartActivity : MainActivity() {
 
     private lateinit var cookie: ImageView
     private lateinit var scoreCounter: TextView
+    private lateinit var cpmCounter: TextView
     private lateinit var shopButton: Button
+    private lateinit var resetButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,20 @@ class StartActivity : MainActivity() {
         startNewGame()
 
         shopButton.setOnClickListener { openShop() }
+
+        // TODO DELETE JUST FOR DEVELOPMENT
+        resetButton = findViewById(R.id.resetButton)
+        resetButton.setOnClickListener{
+            Game.score = 200.0
+            Game.cpm = 0.0
+            Game.producers = mutableMapOf()
+        }
+        // JUST FOR DEVELOPMENT
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Game.updateCpmCounter(cpmCounter)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -62,12 +79,13 @@ class StartActivity : MainActivity() {
     private fun startNewGame() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
+        cpmCounter = findViewById(R.id.cpmCounter)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
         Game.recalculateCps()
         Game.startCountingCookies()
-        Game.stareUpdatingScoreCounter(scoreCounter)
+        Game.startUpdatingScoreCounter(scoreCounter)
         startSavingScore()
     }
 
@@ -107,7 +125,12 @@ class StartActivity : MainActivity() {
             CookieProducer::class.java
         )
         val adapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-        val producers = if (json != null) adapter.fromJson(json) else emptyMap()
+        val producers = try {
+            if (json != null) adapter.fromJson(json) else emptyMap()
+        } catch (e: JsonDataException) {
+            emptyMap<String, CookieProducer>()
+        }
+
         Game.producers = producers!!.map { it.value to it.key.toInt() }.toMap().toMutableMap()
     }
 }

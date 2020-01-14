@@ -21,7 +21,7 @@ object Game {
         })
     }
 
-    fun stareUpdatingScoreCounter(counter: TextView) {
+    fun startUpdatingScoreCounter(counter: TextView) {
         val mainHandler = Handler(Looper.getMainLooper())
 
         mainHandler.post(object : Runnable {
@@ -37,5 +37,10 @@ object Game {
         producers.forEach { producer ->
             cps += producer.key.cps * producer.value
         }
+    }
+
+    fun updateCpsCounter(counter: TextView) {
+        recalculateCps();
+        counter.text = cps.toString()
     }
 }

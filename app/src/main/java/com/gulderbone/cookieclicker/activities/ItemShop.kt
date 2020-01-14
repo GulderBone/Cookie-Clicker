@@ -23,8 +23,10 @@ class ItemShop : MainActivity() {
 
     private lateinit var cookieProducers: Map<String, CookieProducer>
     private lateinit var scoreCounter: TextView
+    private lateinit var cpmCounter: TextView
 
     private lateinit var grandmaButton: Button
+    private lateinit var grandmaCounter: TextView
     private lateinit var farmButton: Button
     private lateinit var mineButton: Button
     private lateinit var factoryButton: Button
@@ -44,7 +46,8 @@ class ItemShop : MainActivity() {
         setContentView(R.layout.item_shop)
 
         scoreCounter = findViewById(R.id.scoreCounter)
-        Game.stareUpdatingScoreCounter(scoreCounter)
+        cpmCounter = findViewById(R.id.cpmCounter)
+        Game.startUpdatingScoreCounter(scoreCounter)
 
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
 
@@ -89,20 +92,35 @@ class ItemShop : MainActivity() {
 
         this.chancemakerButton = findViewById(R.id.chancemaker)
         this.chancemakerButton.setOnClickListener { handlePurchase("Chancemaker") }
+
+        grandmaButton = findViewById(R.id.grandma)
+        grandmaCounter = findViewById(R.id.grandmaCounter)
+        setupProducer(grandmaButton, "Grandma", grandmaCounter)
     }
 
-    private fun handlePurchase(producerName: String) {
-        val grandma = cookieProducers[producerName] ?: CookieProducer("Not found", 0, 0)
+    override fun onResume() {
+        super.onResume()
+        Game.updateCpmCounter(cpmCounter)
+    }
 
-        if (enoughCookiesToBuy(grandma)) {
-            deductCookiesFromScore(grandma)
-            addProducer(grandma)
-            Game.recalculateCps()
-            Log.i("cps", "${Game.cps}")
+    private fun handlePurchase(producerName: String, counter: TextView) {
+        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, 0, 0)
+
+        if (enoughCookiesToBuy(producer)) {
+            deductCookiesFromScore(producer)
+            addProducer(producer)
+            updateProducerCounter(producerName, counter)
+            Game.updateCpmCounter(cpmCounter)
+            Log.i("cpm", "${Game.cpm}")
             saveOwnedProducers()
         } else {
             Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setupProducer(producerButton: Button, producerName: String, counter: TextView) {
+        producerButton.setOnClickListener { handlePurchase(producerName, grandmaCounter) }
+        updateProducerCounter(producerName, counter)
     }
 
     private fun addProducer(cookieProducer: CookieProducer) {
@@ -111,6 +129,11 @@ class ItemShop : MainActivity() {
         } else {
             Game.producers[cookieProducer] = 1
         }
+    }
+
+    private fun updateProducerCounter(producerName: String, counter: TextView) {
+        val producer = cookieProducers[producerName]  ?: CookieProducer(producerName, 0, 0)
+        counter.text = Game.producers[producer]?.toString() ?: 0.toString()
     }
 
     private fun enoughCookiesToBuy(cookieProducer: CookieProducer): Boolean {
