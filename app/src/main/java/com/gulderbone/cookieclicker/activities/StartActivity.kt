@@ -25,7 +25,7 @@ class StartActivity : MainActivity() {
 
     private lateinit var cookie: ImageView
     private lateinit var scoreCounter: TextView
-    private lateinit var cpmCounter: TextView
+    private lateinit var cpsCounter: TextView
     private lateinit var shopButton: Button
     private lateinit var resetButton: Button
 
@@ -39,16 +39,17 @@ class StartActivity : MainActivity() {
         // TODO DELETE JUST FOR DEVELOPMENT
         resetButton = findViewById(R.id.resetButton)
         resetButton.setOnClickListener{
-            Game.score = 200.0
+            Game.score = 1000000000.0
             Game.cps = 0.0
             Game.producers = mutableMapOf()
+            cpsCounter.text = "0.0"
         }
         // JUST FOR DEVELOPMENT
     }
 
     override fun onResume() {
         super.onResume()
-        Game.updateCpsCounter(cpmCounter)
+        Game.updateCpsCounter(cpsCounter)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -79,7 +80,7 @@ class StartActivity : MainActivity() {
     private fun startNewGame() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
-        cpmCounter = findViewById(R.id.cpsCounter)
+        cpsCounter = findViewById(R.id.cpsCounter)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
