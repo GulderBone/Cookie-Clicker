@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -21,207 +22,195 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="0"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/openItemShopButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scoreCounter"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/grandma"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Grandma"
-        app:layout_constraintBottom_toTopOf="@+id/mine"
-        app:layout_constraintEnd_toStartOf="@+id/farm"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
 
     <Button
-        android:id="@+id/farm"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Farm"
-        app:layout_constraintBottom_toTopOf="@+id/factory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/grandma"
-        app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
-
-    <Button
-        android:id="@+id/mine"
-        android:layout_width="0dp"
+        android:id="@+id/wizardTowerButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Mine"
-        app:layout_constraintBottom_toTopOf="@+id/bank"
-        app:layout_constraintEnd_toStartOf="@+id/factory"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grandma" />
-
-    <Button
-        android:id="@+id/factory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Factory"
-        app:layout_constraintBottom_toTopOf="@+id/temple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/mine"
-        app:layout_constraintTop_toBottomOf="@+id/farm" />
-
-    <Button
-        android:id="@+id/bank"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Bank"
-        app:layout_constraintBottom_toTopOf="@+id/wizardTower"
-        app:layout_constraintEnd_toStartOf="@+id/temple"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mine" />
-
-    <Button
-        android:id="@+id/temple"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Temple"
-        app:layout_constraintBottom_toTopOf="@+id/shipment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bank"
-        app:layout_constraintTop_toBottomOf="@+id/factory" />
-
-    <Button
-        android:id="@+id/wizardTower"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Wizard Tower"
-        app:layout_constraintBottom_toTopOf="@+id/alchemyLab"
-        app:layout_constraintEnd_toStartOf="@+id/shipment"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bank" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="382dp" />
 
     <Button
-        android:id="@+id/shipment"
-        android:layout_width="0dp"
+        android:id="@+id/shipmentButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Shipment"
-        app:layout_constraintBottom_toTopOf="@+id/portal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/wizardTower"
-        app:layout_constraintTop_toBottomOf="@+id/temple" />
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="379dp" />
 
     <Button
-        android:id="@+id/alchemyLab"
-        android:layout_width="0dp"
+        android:id="@+id/alchemyLabButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Alchemy Lab"
-        app:layout_constraintBottom_toTopOf="@+id/timeMachine"
-        app:layout_constraintEnd_toStartOf="@+id/portal"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wizardTower" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="470dp" />
 
     <Button
-        android:id="@+id/portal"
-        android:layout_width="0dp"
+        android:id="@+id/portalButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Portal"
-        app:layout_constraintBottom_toTopOf="@+id/antimatterCondenser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/alchemyLab"
-        app:layout_constraintTop_toBottomOf="@+id/shipment" />
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="465dp" />
 
     <Button
-        android:id="@+id/timeMachine"
-        android:layout_width="0dp"
+        android:id="@+id/timeMachineButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Time Machine"
-        app:layout_constraintBottom_toTopOf="@+id/prism"
-        app:layout_constraintEnd_toStartOf="@+id/antimatterCondenser"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alchemyLab" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="557dp" />
 
     <Button
-        android:id="@+id/antimatterCondenser"
-        android:layout_width="0dp"
+        android:id="@+id/antimatterCondenserButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Antimatter Condenser"
-        app:layout_constraintBottom_toTopOf="@+id/chancemaker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/timeMachine"
-        app:layout_constraintTop_toBottomOf="@+id/portal" />
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="552dp" />
 
     <Button
-        android:id="@+id/prism"
-        android:layout_width="0dp"
+        android:id="@+id/prismButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Prism"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/chancemaker"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeMachine" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="644dp" />
 
     <Button
-        android:id="@+id/chancemaker"
-        android:layout_width="0dp"
+        android:id="@+id/chancemakerButton"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="Chancemaker"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/prism"
-        app:layout_constraintTop_toBottomOf="@+id/antimatterCondenser" />
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="645dp" />
 
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/grandmaCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TableLayout
+        android:layout_width="400dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grandma"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/cpmCounter">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/grandmaButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Grandma" />
+
+            <Button
+                android:id="@+id/farmButton"
+                android:layout_width="180dp"
+                android:layout_height="48dp"
+                android:text="Farm" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/grandmaCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/farmCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/mineButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Mine" />
+
+            <Button
+                android:id="@+id/factoryButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Factory" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/bank"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:text="Bank" />
+
+            <Button
+                android:id="@+id/temple"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:text="Temple" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

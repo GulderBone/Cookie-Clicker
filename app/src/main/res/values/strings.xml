@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cookie Clicker</string>
+    <string name="counterStartValue">0</string>
+    <string name="grandma">Grandma</string>
 </resources>
