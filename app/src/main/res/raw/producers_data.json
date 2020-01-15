@@ -2,6 +2,71 @@
   {
     "name": "Grandma",
     "startingPrice": 100,
-    "cpm": 1
+    "cps": 1
+  },
+  {
+    "name": "Farm",
+    "startingPrice": 1100,
+    "cps": 8
+  },
+  {
+    "name": "Mine",
+    "startingPrice": 12000,
+    "cps": 47
+  },
+  {
+    "name": "Factory",
+    "startingPrice": 130000,
+    "cps": 260
+  },
+  {
+    "name": "Bank",
+    "startingPrice": 1400000,
+    "cps": 1400
+  },
+  {
+    "name": "Temple",
+    "startingPrice": 20000000,
+    "cps": 7800
+  },
+  {
+    "name": "Wizard Tower",
+    "startingPrice": 330000000,
+    "cps": 7800
+  },
+  {
+    "name": "Shipment",
+    "startingPrice": 5100000000,
+    "cps": 7800
+  },
+  {
+    "name": "Alchemy Lab",
+    "startingPrice": 75000000000,
+    "cps": 7800
+  },
+  {
+    "name": "Portal",
+    "startingPrice": 1000000000000,
+    "cps": 7800
+  },
+  {
+    "name": "Time Machine",
+    "startingPrice": 14000000000000,
+    "cps": 7800
+  },
+  {
+    "name": "Antimatter Condenser",
+    "startingPrice": 170000000000000,
+    "cps": 7800
+  },
+  {
+    "name": "Prism",
+    "startingPrice": 2100000000000000,
+    "cps": 7800
+  },
+  {
+    "name": "Chancemaker",
+    "startingPrice": 26000000000000000,
+    "cps": 7800
   }
 ]
