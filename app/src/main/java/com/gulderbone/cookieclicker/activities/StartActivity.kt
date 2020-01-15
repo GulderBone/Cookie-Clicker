@@ -49,6 +49,7 @@ class StartActivity : MainActivity() {
 
     override fun onResume() {
         super.onResume()
+        Game.recalculateCps()
         Game.updateCpsCounter(cpsCounter)
     }
 

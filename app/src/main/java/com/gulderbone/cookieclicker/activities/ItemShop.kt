@@ -67,6 +67,7 @@ class ItemShop : MainActivity() {
 
     override fun onResume() {
         super.onResume()
+        Game.recalculateCps()
         Game.updateCpsCounter(cpsCounter)
     }
 
@@ -135,6 +136,7 @@ class ItemShop : MainActivity() {
             deductCookiesFromScore(producer)
             addProducer(producer)
             updateProducerCounter(producerName, counter)
+            Game.recalculateCps()
             Game.updateCpsCounter(cpsCounter)
             Log.i("cps", "${Game.cps}")
             saveOwnedProducers()

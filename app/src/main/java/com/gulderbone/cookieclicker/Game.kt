@@ -40,7 +40,6 @@ object Game {
     }
 
     fun updateCpsCounter(counter: TextView) {
-        recalculateCps()
         counter.text = cps.toString()
     }
 }
