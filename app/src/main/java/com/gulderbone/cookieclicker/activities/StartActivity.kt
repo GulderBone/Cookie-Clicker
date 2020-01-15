@@ -40,7 +40,7 @@ class StartActivity : MainActivity() {
         resetButton = findViewById(R.id.resetButton)
         resetButton.setOnClickListener{
             Game.score = 200.0
-            Game.cpm = 0.0
+            Game.cps = 0.0
             Game.producers = mutableMapOf()
         }
         // JUST FOR DEVELOPMENT
@@ -48,7 +48,7 @@ class StartActivity : MainActivity() {
 
     override fun onResume() {
         super.onResume()
-        Game.updateCpmCounter(cpmCounter)
+        Game.updateCpsCounter(cpmCounter)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -79,7 +79,7 @@ class StartActivity : MainActivity() {
     private fun startNewGame() {
         cookie = findViewById(R.id.cookie)
         scoreCounter = findViewById(R.id.scoreCounter)
-        cpmCounter = findViewById(R.id.cpmCounter)
+        cpmCounter = findViewById(R.id.cpsCounter)
         shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
