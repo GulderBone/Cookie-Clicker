@@ -32,41 +32,41 @@
   {
     "name": "Wizard Tower",
     "startingPrice": 330000000,
-    "cps": 7800
+    "cps": 44000
   },
   {
     "name": "Shipment",
     "startingPrice": 5100000000,
-    "cps": 7800
+    "cps": 260000
   },
   {
     "name": "Alchemy Lab",
     "startingPrice": 75000000000,
-    "cps": 7800
+    "cps": 1600000
   },
   {
     "name": "Portal",
     "startingPrice": 1000000000000,
-    "cps": 7800
+    "cps": 10000000
   },
   {
     "name": "Time Machine",
     "startingPrice": 14000000000000,
-    "cps": 7800
+    "cps": 65000000
   },
   {
     "name": "Antimatter Condenser",
     "startingPrice": 170000000000000,
-    "cps": 7800
+    "cps": 430000000
   },
   {
     "name": "Prism",
     "startingPrice": 2100000000000000,
-    "cps": 7800
+    "cps": 2900000000
   },
   {
     "name": "Chancemaker",
     "startingPrice": 26000000000000000,
-    "cps": 7800
+    "cps": 21000000000
   }
 ]
