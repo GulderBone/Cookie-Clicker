@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,96 +10,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="0"
+        android:text="@string/counterStartValue"
         android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/cpmCounter"
+        android:id="@+id/cpsCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="0"
+        android:text="@string/counterStartValue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
 
-    <Button
-        android:id="@+id/wizardTowerButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Wizard Tower"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="382dp" />
-
-    <Button
-        android:id="@+id/shipmentButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Shipment"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="379dp" />
-
-    <Button
-        android:id="@+id/alchemyLabButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Alchemy Lab"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="470dp" />
-
-    <Button
-        android:id="@+id/portalButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Portal"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="465dp" />
-
-    <Button
-        android:id="@+id/timeMachineButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Time Machine"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="557dp" />
-
-    <Button
-        android:id="@+id/antimatterCondenserButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Antimatter Condenser"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="552dp" />
-
-    <Button
-        android:id="@+id/prismButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Prism"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="644dp" />
-
-    <Button
-        android:id="@+id/chancemakerButton"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Chancemaker"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="645dp" />
-
     <TableLayout
+        android:id="@+id/producerTable"
         android:layout_width="400dp"
-        android:layout_height="118dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpmCounter">
+        app:layout_constraintTop_toBottomOf="@+id/cpsCounter">
 
         <TableRow
             android:layout_width="match_parent"
@@ -111,12 +48,16 @@
                 android:id="@+id/grandmaButton"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Grandma" />
 
             <Button
                 android:id="@+id/farmButton"
                 android:layout_width="180dp"
                 android:layout_height="48dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Farm" />
         </TableRow>
 
@@ -129,88 +70,297 @@
                 android:id="@+id/grandmaCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/farmCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
                 android:textAlignment="center" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center" >
+            android:gravity="center">
 
             <Button
                 android:id="@+id/mineButton"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Mine" />
 
             <Button
                 android:id="@+id/factoryButton"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Factory" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/mineCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/factoryCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center" >
+            android:gravity="center">
 
             <Button
-                android:id="@+id/bank"
+                android:id="@+id/bankButton"
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Bank" />
 
             <Button
-                android:id="@+id/temple"
+                android:id="@+id/templeButton"
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="Temple" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/bankCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/templeCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/wizardTowerButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Wizard Tower" />
+
+            <Button
+                android:id="@+id/shipmentButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Shipment" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/wizardTowerCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/shipmentCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/alchemyLabButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Alchemy Lab" />
+
+            <Button
+                android:id="@+id/portalButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Portal" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/alchemyLabCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/portalCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/timeMachineButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Time Machine" />
+
+            <Button
+                android:id="@+id/antimatterCondenserButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Antimatter Condenser" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/timeMachineCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/antimatterCondenserCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/prismButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Prism" />
+
+            <Button
+                android:id="@+id/chancemakerButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Chancemaker" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/prismCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/chancemakerCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/counterStartValue"
+                android:textAlignment="center" />
+        </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
