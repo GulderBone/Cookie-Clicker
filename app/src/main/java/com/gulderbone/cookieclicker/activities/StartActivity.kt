@@ -11,12 +11,14 @@ import android.widget.TextView
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
+import com.gulderbone.cookieclicker.utilities.BigDecimalAdapter
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromFile
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.math.BigDecimal
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -39,10 +41,10 @@ class StartActivity : MainActivity() {
         // TODO DELETE JUST FOR DEVELOPMENT
         resetButton = findViewById(R.id.resetButton)
         resetButton.setOnClickListener{
-            Game.score = 1000000000.0
-            Game.cps = 0.0
+            Game.score = BigDecimal(100_000_000_0.0)
+            Game.cps = BigDecimal.ZERO
             Game.producers = mutableMapOf()
-            cpsCounter.text = "0.0"
+            cpsCounter.text = "0"
         }
         // JUST FOR DEVELOPMENT
     }
@@ -104,7 +106,7 @@ class StartActivity : MainActivity() {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                sharedPreferencesEditor.putInt("score", Game.score.toInt())
+                sharedPreferencesEditor.putString("score", Game.score.toPlainString())
                 sharedPreferencesEditor.apply()
                 mainHandler.postDelayed(this, 25)
             }
@@ -113,12 +115,13 @@ class StartActivity : MainActivity() {
 
     private fun retrieveScore() {
         val sharedPreferences = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0)
-        Game.score = sharedPreferences.getInt("score", 0).toDouble()
+        Game.score = sharedPreferences.getString("score", "0")?.toBigDecimal() ?: BigDecimal.ZERO
     }
 
     private fun retrieveOwnedProducers() {
         val json = getTextFromFile(application, "producersOwned.json")
         val moshi = Moshi.Builder()
+            .add(BigDecimalAdapter)
             .add(KotlinJsonAdapterFactory())
             .build()
         val cookieProducerMap = Types.newParameterizedType(

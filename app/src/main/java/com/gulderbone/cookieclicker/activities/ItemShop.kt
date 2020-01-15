@@ -8,16 +8,19 @@ import android.widget.Toast
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
+import com.gulderbone.cookieclicker.utilities.BigDecimalAdapter
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromResources
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.saveTextToFile
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.math.BigDecimal
 
 class ItemShop : MainActivity() {
 
     private val moshi = Moshi.Builder()
+        .add(BigDecimalAdapter)
         .add(KotlinJsonAdapterFactory())
         .build()
 
@@ -130,7 +133,7 @@ class ItemShop : MainActivity() {
     }
 
     private fun handlePurchase(producerName: String, counter: TextView) {
-        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, 0, 0)
+        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, BigDecimal.ZERO, BigDecimal.ZERO)
 
         if (enoughCookiesToBuy(producer)) {
             deductCookiesFromScore(producer)
@@ -138,7 +141,6 @@ class ItemShop : MainActivity() {
             updateProducerCounter(producerName, counter)
             Game.recalculateCps()
             Game.updateCpsCounter(cpsCounter)
-            Log.i("cps", "${Game.cps}")
             saveOwnedProducers()
         } else {
             Toast.makeText(this, "Not enough cookies", Toast.LENGTH_SHORT).show()
@@ -156,10 +158,11 @@ class ItemShop : MainActivity() {
         } else {
             Game.producers[cookieProducer] = 1
         }
+        Log.i("event", "Producer ${cookieProducer.name}} bought, current amount is: ${Game.producers[cookieProducer]}")
     }
 
     private fun updateProducerCounter(producerName: String, counter: TextView) {
-        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, 0, 0)
+        val producer = cookieProducers[producerName] ?: CookieProducer(producerName, BigDecimal.ZERO, BigDecimal.ZERO)
         counter.text = Game.producers[producer]?.toString() ?: 0.toString()
     }
 
@@ -168,7 +171,7 @@ class ItemShop : MainActivity() {
         if (Game.score < currentProducerPrice) {
             return false
         } else {
-            Log.i("expenses", "$currentProducerPrice cookies spent")
+            Log.i("event", "$currentProducerPrice cookies spent")
         }
         return true
     }
