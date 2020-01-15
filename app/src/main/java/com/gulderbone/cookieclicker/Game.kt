@@ -2,12 +2,14 @@ package com.gulderbone.cookieclicker
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.TextView
 import com.gulderbone.cookieclicker.data.CookieProducer
+import java.math.BigDecimal
 
 object Game {
-    var score = 0.0
-    var cps = 0.0
+    var score = BigDecimal.ZERO
+    var cps = BigDecimal.ZERO
     var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies() {
@@ -15,7 +17,7 @@ object Game {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                score += (cps / 20)
+                score += (cps / 20.toBigDecimal())
                 mainHandler.postDelayed(this, 50)
             }
         })
@@ -26,20 +28,21 @@ object Game {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                counter.text = score.toInt().toString()
+                counter.text = score.toPlainString()
                 mainHandler.postDelayed(this, 50)
             }
         })
     }
 
     fun recalculateCps() {
-        cps = 0.0
+        cps = BigDecimal.ZERO
         producers.forEach { producer ->
-            cps += producer.key.cps * producer.value
+            cps += producer.key.cps * producer.value.toBigDecimal()
         }
+        Log.i("cps", "New cps is: $cps")
     }
 
     fun updateCpsCounter(counter: TextView) {
-        counter.text = cps.toString()
+        counter.text = cps.toPlainString()
     }
 }

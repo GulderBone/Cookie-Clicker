@@ -1,24 +1,26 @@
 package com.gulderbone.cookieclicker.data
 
 import com.gulderbone.cookieclicker.Game
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 data class CookieProducer (
     val name: String,
-    val startingPrice: Long,
-    val cps: Long
+    val startingPrice: BigDecimal,
+    val cps: BigDecimal
 ) {
-    fun calculatePrice(cookieProducer: CookieProducer): Long {
+    fun calculatePrice(cookieProducer: CookieProducer): BigDecimal {
         var price = startingPrice
         val amount: Int? =
             if (Game.producers.containsKey(cookieProducer)) Game.producers[cookieProducer] else 0
 
         if (amount != null) {
             for (i in 0 until amount) {
-                price = (price * 1.10).toLong()
+                price *= BigDecimal(1.10)
             }
         }
 
-        return price
+        return price.setScale(0, RoundingMode.FLOOR)
     }
 
     override fun equals(other: Any?): Boolean {
