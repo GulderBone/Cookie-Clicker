@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
@@ -18,18 +15,13 @@ import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 class StartActivity : MainActivity() {
-
-    private lateinit var cookie: ImageView
-    private lateinit var scoreCounter: TextView
-    private lateinit var cpsCounter: TextView
-    private lateinit var shopButton: Button
-    private lateinit var resetButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +31,7 @@ class StartActivity : MainActivity() {
         shopButton.setOnClickListener { openShop() }
 
         // TODO DELETE JUST FOR DEVELOPMENT
-        resetButton = findViewById(R.id.resetButton)
-        resetButton.setOnClickListener{
+        resetButton.setOnClickListener {
             Game.score = BigDecimal(100_000_000_0.0)
             Game.cps = BigDecimal.ZERO
             Game.producers = mutableMapOf()
@@ -81,10 +72,6 @@ class StartActivity : MainActivity() {
     }
 
     private fun startNewGame() {
-        cookie = findViewById(R.id.cookie)
-        scoreCounter = findViewById(R.id.scoreCounter)
-        cpsCounter = findViewById(R.id.cpsCounter)
-        shopButton = findViewById(R.id.openItemShopButton)
         retrieveScore()
         retrieveOwnedProducers()
         Game.recalculateCps()
@@ -106,7 +93,7 @@ class StartActivity : MainActivity() {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                sharedPreferencesEditor.putString("score", Game.score.toPlainString())
+                sharedPreferencesEditor.putString("Score", Game.score.toPlainString())
                 sharedPreferencesEditor.apply()
                 mainHandler.postDelayed(this, 25)
             }
@@ -115,7 +102,7 @@ class StartActivity : MainActivity() {
 
     private fun retrieveScore() {
         val sharedPreferences = this.getSharedPreferences("com.gulderbone.cookieclicker.prefs", 0)
-        Game.score = sharedPreferences.getString("score", "0")?.toBigDecimal() ?: BigDecimal.ZERO
+        Game.score = sharedPreferences.getString("Score", "0")?.toBigDecimal() ?: BigDecimal.ZERO
     }
 
     private fun retrieveOwnedProducers() {
