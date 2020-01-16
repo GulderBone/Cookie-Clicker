@@ -119,8 +119,7 @@ class StartActivity : MainActivity() {
             Integer::class.java
         )
         val adapter: JsonAdapter<MutableMap<CookieProducer, Int>> = moshi.adapter(cookieProducerMap)
-        val producers = adapter.fromJson(json) ?: mutableMapOf()
 
-        Game.producers = producers
+        Game.producers = adapter.fromJson(json) ?: mutableMapOf()
     }
 }
