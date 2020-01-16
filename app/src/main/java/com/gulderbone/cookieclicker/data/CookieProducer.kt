@@ -44,6 +44,6 @@ data class CookieProducer (
     }
 
     override fun compareTo(other: CookieProducer): Int {
-        return this.cps.toInt() - other.cps.toInt()
+        return this.cps.compareTo(other.cps)
     }
 }
