@@ -9,6 +9,7 @@ import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
 import com.gulderbone.cookieclicker.utilities.BigDecimalAdapter
+import com.gulderbone.cookieclicker.utilities.CookieProducerAdapter
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromResources
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.saveTextToFile
 import com.squareup.moshi.JsonAdapter
@@ -18,12 +19,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.item_shop.*
 import java.math.BigDecimal
 
-class ItemShop : MainActivity() {
-
-    private val moshi = Moshi.Builder()
-        .add(BigDecimalAdapter)
-        .add(KotlinJsonAdapterFactory())
-        .build()
+class ProducerShop : MainActivity() {
 
     private lateinit var cookieProducers: Map<String, CookieProducer>
 
@@ -107,6 +103,11 @@ class ItemShop : MainActivity() {
     }
 
     private fun parseCookieProducersToMap(text: String): Map<String, CookieProducer> {
+        val moshi = Moshi.Builder()
+            .add(BigDecimalAdapter)
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         val cookieProducerList = Types.newParameterizedType(
             List::class.java, CookieProducer::class.java
         )
@@ -116,12 +117,17 @@ class ItemShop : MainActivity() {
     }
 
     private fun saveOwnedProducers() {
-        val ownedProducers = Game.producers.map { it.value.toString() to it.key }.toMap()
+        val moshi = Moshi.Builder()
+            .add(BigDecimalAdapter)
+            .add(CookieProducerAdapter)
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         val cookieProducerMap = Types.newParameterizedType(
-            Map::class.java, String()::class.java, CookieProducer::class.java
+            Map::class.java, CookieProducer::class.java, Integer::class.java
         )
-        val jsonAdapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-        val json = jsonAdapter.toJson(ownedProducers)
+        val jsonAdapter: JsonAdapter<Map<CookieProducer, Int>> = moshi.adapter(cookieProducerMap)
+        val json = jsonAdapter.toJson(Game.producers)
 
         saveTextToFile(application, "producersOwned.json", json)
     }

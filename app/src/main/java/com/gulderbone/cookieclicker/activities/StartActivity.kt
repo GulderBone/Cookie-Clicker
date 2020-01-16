@@ -9,14 +9,15 @@ import com.gulderbone.cookieclicker.Game
 import com.gulderbone.cookieclicker.R
 import com.gulderbone.cookieclicker.data.CookieProducer
 import com.gulderbone.cookieclicker.utilities.BigDecimalAdapter
+import com.gulderbone.cookieclicker.utilities.CookieProducerAdapter
 import com.gulderbone.cookieclicker.utilities.FileHelper.Companion.getTextFromFile
 import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -68,7 +69,7 @@ class StartActivity : MainActivity() {
 
     private fun cookieClicked() {
         Game.score++
-        scoreCounter.text = Game.score.toInt().toString()
+        scoreCounter.text = Game.score.setScale(0, RoundingMode.FLOOR).toPlainString()
     }
 
     private fun startNewGame() {
@@ -82,7 +83,7 @@ class StartActivity : MainActivity() {
 
 
     private fun openShop() {
-        val intent = Intent(applicationContext, ItemShop::class.java)
+        val intent = Intent(applicationContext, ProducerShop::class.java)
         startActivity(intent)
     }
 
@@ -109,20 +110,16 @@ class StartActivity : MainActivity() {
         val json = getTextFromFile(application, "producersOwned.json")
         val moshi = Moshi.Builder()
             .add(BigDecimalAdapter)
+            .add(CookieProducerAdapter)
             .add(KotlinJsonAdapterFactory())
             .build()
         val cookieProducerMap = Types.newParameterizedType(
             Map::class.java,
-            String::class.java,
-            CookieProducer::class.java
+            CookieProducer::class.java,
+            Integer::class.java
         )
-        val adapter: JsonAdapter<Map<String, CookieProducer>> = moshi.adapter(cookieProducerMap)
-        val producers = try {
-            if (json != null) adapter.fromJson(json) else emptyMap()
-        } catch (e: JsonDataException) {
-            emptyMap<String, CookieProducer>()
-        }
+        val adapter: JsonAdapter<MutableMap<CookieProducer, Int>> = moshi.adapter(cookieProducerMap)
 
-        Game.producers = producers!!.map { it.value to it.key.toInt() }.toMap().toMutableMap()
+        Game.producers = adapter.fromJson(json) ?: mutableMapOf()
     }
 }
