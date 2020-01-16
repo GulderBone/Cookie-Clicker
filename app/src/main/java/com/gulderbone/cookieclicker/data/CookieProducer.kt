@@ -8,7 +8,7 @@ data class CookieProducer (
     val name: String,
     val startingPrice: BigDecimal,
     val cps: BigDecimal
-) {
+) : Comparable<CookieProducer> {
     fun calculatePrice(cookieProducer: CookieProducer): BigDecimal {
         var price = startingPrice
         val amount: Int? =
@@ -41,5 +41,9 @@ data class CookieProducer (
         result = 31 * result + startingPrice.toInt()
         result = 31 * result + cps.toInt()
         return result
+    }
+
+    override fun compareTo(other: CookieProducer): Int {
+        return this.cps.toInt() - other.cps.toInt()
     }
 }
