@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="0"
+        android:text="@string/counterStartValue"
         android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="0"
+        android:text="@string/counterStartValue"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/openItemShopButton"
+        app:layout_constraintBottom_toTopOf="@+id/shopButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreCounter"
@@ -43,7 +43,7 @@
         android:contentDescription="clickable_cookie" />
 
     <Button
-        android:id="@+id/openItemShopButton"
+        android:id="@+id/shopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reset"
-        app:layout_constraintBottom_toTopOf="@+id/openItemShopButton"
+        app:layout_constraintBottom_toTopOf="@+id/shopButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpsCounter" />
