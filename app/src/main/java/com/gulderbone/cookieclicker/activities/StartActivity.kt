@@ -82,7 +82,7 @@ class StartActivity : MainActivity() {
 
 
     private fun openShop() {
-        val intent = Intent(applicationContext, ItemShop::class.java)
+        val intent = Intent(applicationContext, producerShop::class.java)
         startActivity(intent)
     }
 

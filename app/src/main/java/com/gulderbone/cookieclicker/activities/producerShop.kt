@@ -18,7 +18,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.item_shop.*
 import java.math.BigDecimal
 
-class ItemShop : MainActivity() {
+class producerShop : MainActivity() {
 
     private val moshi = Moshi.Builder()
         .add(BigDecimalAdapter)
