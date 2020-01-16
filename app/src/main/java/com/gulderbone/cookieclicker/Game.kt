@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.TextView
 import com.gulderbone.cookieclicker.data.CookieProducer
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 object Game {
     var score = BigDecimal.ZERO
@@ -17,7 +18,7 @@ object Game {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                score += (cps / 20.toBigDecimal())
+                score += cps.divide(BigDecimal(20))
                 mainHandler.postDelayed(this, 50)
             }
         })
@@ -28,7 +29,7 @@ object Game {
 
         mainHandler.post(object : Runnable {
             override fun run() {
-                counter.text = score.toPlainString()
+                counter.text = score.setScale(0, RoundingMode.FLOOR).toPlainString()
                 mainHandler.postDelayed(this, 50)
             }
         })

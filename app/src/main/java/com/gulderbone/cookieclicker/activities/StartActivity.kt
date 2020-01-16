@@ -17,6 +17,7 @@ import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -68,7 +69,7 @@ class StartActivity : MainActivity() {
 
     private fun cookieClicked() {
         Game.score++
-        scoreCounter.text = Game.score.toInt().toString()
+        scoreCounter.text = Game.score.setScale(0, RoundingMode.FLOOR).toPlainString()
     }
 
     private fun startNewGame() {
