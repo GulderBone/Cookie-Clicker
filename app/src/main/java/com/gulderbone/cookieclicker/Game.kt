@@ -9,8 +9,8 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 object Game {
-    var score = BigDecimal.ZERO
-    var cps = BigDecimal.ZERO
+    var score: BigDecimal = BigDecimal.ZERO
+    var cps: BigDecimal = BigDecimal.ZERO
     var producers = mutableMapOf<CookieProducer, Int>()
 
     fun startCountingCookies() {
