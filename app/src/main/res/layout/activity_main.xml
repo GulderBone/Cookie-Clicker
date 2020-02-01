@@ -10,7 +10,7 @@
         android:id="@+id/scoreCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="@string/counterStartValue"
         android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"

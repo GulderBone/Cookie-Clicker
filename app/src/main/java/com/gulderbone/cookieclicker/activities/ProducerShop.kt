@@ -30,6 +30,7 @@ class ProducerShop : MainActivity() {
         cookieProducers = parseCookieProducersToMap(getTextFromResources(application, R.raw.producers_data))
         setupProducers()
         Game.startUpdatingScoreCounter(scoreCounter)
+        exitShopButton.setOnClickListener { finish() }
     }
 
     override fun onResume() {
