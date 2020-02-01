@@ -120,6 +120,10 @@ class StartActivity : MainActivity() {
         )
         val adapter: JsonAdapter<MutableMap<CookieProducer, Int>> = moshi.adapter(cookieProducerMap)
 
-        Game.producers = adapter.fromJson(json) ?: mutableMapOf()
+        if (json.isNullOrEmpty()) {
+            Game.producers = mutableMapOf()
+        } else {
+            Game.producers = adapter.fromJson(json) ?: mutableMapOf()
+        }
     }
 }
