@@ -1,6 +1,8 @@
 # Cookie-Clicker
 Cookie clicker clone made to learn Kotlin and Android API
 
+Download APK: [Cookie Clicker](https://github.com/GulderBone/Cookie-Clicker/raw/master/app-release.apk)
+
 ## What have I learnt
 
 1. Kotlin basics: variables, conditionals, loops, data classes, abstract classes, singletons etc. (This is my first real Kotlin app)
