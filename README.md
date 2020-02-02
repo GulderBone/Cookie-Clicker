@@ -1,7 +1,7 @@
 # Cookie-Clicker
 Cookie clicker clone made to learn Kotlin and Android API
 
-Download APK: [Cookie Clicker](https://github.com/GulderBone/Cookie-Clicker/raw/master/Cookie_Clicker.apk)
+Download APK: [Cookie Clicker](https://github.com/GulderBone/Cookie-Clicker/raw/master/Cookie%20Clicker.apk)
 
 ## What have I learnt
 
