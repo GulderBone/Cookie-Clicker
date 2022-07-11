@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cookie"
-        android:contentDescription="clickable_cookie" />
+        android:contentDescription="@string/clickable_cookie" />
 
     <Button
         android:id="@+id/shopButton"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:layout_marginBottom="32dp"
-        android:text="Shop"
+        android:text="@string/shop"
         app:layout_constraintBottom_toTopOf="@+id/cookie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/reset"
         app:layout_constraintBottom_toTopOf="@+id/shopButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,7 +27,6 @@
         app:layout_constraintTop_toBottomOf="@+id/scoreCounter" />
 
     <TableLayout
-        android:id="@+id/producerTable"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Grandma" />
+                android:text="@string/grandma"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/farmButton"
@@ -57,7 +56,8 @@
                 android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Farm" />
+                android:text="@string/farm"
+                style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
 
         <TableRow
@@ -95,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Mine" />
+                android:text="@string/mine"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/factoryButton"
@@ -103,7 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Factory" />
+                android:text="@string/factory"
+                style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
 
         <TableRow
@@ -141,7 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Bank" />
+                android:text="@string/bank"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/templeButton"
@@ -149,7 +152,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Temple" />
+                android:text="@string/temple"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </TableRow>
 
@@ -188,7 +192,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Wizard Tower" />
+                android:text="@string/wizard_tower"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/shipmentButton"
@@ -196,7 +201,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Shipment" />
+                android:text="@string/shipment"
+                style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
 
         <TableRow
@@ -234,7 +240,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Alchemy Lab" />
+                android:text="@string/alchemy_lab"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/portalButton"
@@ -242,7 +249,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Portal" />
+                android:text="@string/portal"
+                style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
 
         <TableRow
@@ -280,7 +288,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Time Machine" />
+                android:text="@string/time_machine"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/antimatterCondenserButton"
@@ -288,7 +297,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Antimatter Condenser" />
+                android:text="@string/antimatter_condenser"
+                style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
 
         <TableRow
@@ -321,12 +331,12 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/prismButton"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Prism" />
+                android:text="@string/prism"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/chancemakerButton"
@@ -334,7 +344,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Chancemaker" />
+                android:text="@string/chancemaker"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </TableRow>
 
@@ -344,7 +355,6 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/prismCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
