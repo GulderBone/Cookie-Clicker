@@ -32,11 +32,12 @@ class StartActivity : MainActivity() {
         shopButton.setOnClickListener { openShop() }
 
         // TODO DELETE JUST FOR DEVELOPMENT
-        resetButton.setOnClickListener {
+        resetButton.setOnLongClickListener {
             Game.score = BigDecimal(100_000_000_0.0)
             Game.cps = BigDecimal.ZERO
             Game.producers = mutableMapOf()
             cpsCounter.text = "0"
+            true
         }
         // JUST FOR DEVELOPMENT
     }
