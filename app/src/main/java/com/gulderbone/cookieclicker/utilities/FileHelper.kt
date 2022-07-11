@@ -7,7 +7,7 @@ import java.io.File
 class FileHelper {
     companion object {
         fun getTextFromResources(context: Context, resourceId: Int): String {
-            return context.resources.openRawResource(resourceId).use {
+            return context.resources.openRawResource(resourceId).use { it ->
                 it.bufferedReader().use {
                     it.readText()
                 }

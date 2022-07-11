@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused")
+
 package com.gulderbone.cookieclicker.utilities
 
 import com.gulderbone.cookieclicker.data.CookieProducer
@@ -19,5 +21,5 @@ object CookieProducerAdapter {
         jsonAdapter.fromJson(string) ?: CookieProducer("not found", BigDecimal.ZERO, BigDecimal.ZERO)
 
     @ToJson
-    fun toJson(producer: CookieProducer) = jsonAdapter.toJson(producer)
+    fun toJson(producer: CookieProducer) = jsonAdapter.toJson(producer)!!
 }

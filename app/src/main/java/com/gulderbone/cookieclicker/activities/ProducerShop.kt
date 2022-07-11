@@ -114,7 +114,7 @@ class ProducerShop : MainActivity() {
         )
         val jsonAdapter: JsonAdapter<List<CookieProducer>> = moshi.adapter(cookieProducerList)
 
-        return jsonAdapter.fromJson(text)?.map { it.name to it }?.toMap() ?: emptyMap()
+        return jsonAdapter.fromJson(text)?.associate { it.name to it } ?: emptyMap()
     }
 
     private fun saveOwnedProducers() {

@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">Cookie Clicker</string>
     <string name="counterStartValue">0</string>
-    <string name="grandma">Grandma</string>
     <string name="exit">exit</string>
+    <string name="clickable_cookie">clickable_cookie</string>
+    <string name="shop">Shop</string>
+    <string name="reset">Reset</string>
+    <string name="grandma">Grandma</string>
+    <string name="farm">Farm</string>
+    <string name="mine">Mine</string>
+    <string name="factory">Factory</string>
+    <string name="bank">Bank</string>
+    <string name="temple">Temple</string>
+    <string name="wizard_tower">Wizard Tower</string>
+    <string name="shipment">Shipment</string>
+    <string name="alchemy_lab">Alchemy Lab</string>
+    <string name="portal">Portal</string>
+    <string name="time_machine">Time Machine</string>
+    <string name="antimatter_condenser">Antimatter Condenser</string>
+    <string name="prism">Prism</string>
+    <string name="chancemaker">Chancemaker</string>
 </resources>

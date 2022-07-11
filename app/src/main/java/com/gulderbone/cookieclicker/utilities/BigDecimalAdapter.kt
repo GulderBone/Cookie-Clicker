@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused", "unused", "unused")
+
 package com.gulderbone.cookieclicker.utilities
 
 import com.squareup.moshi.FromJson
